@@ -1,11 +1,12 @@
 <template>
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <Sidebar @add-block="addBlock" />
+        <Sidebar @add-block="addBlock" @add-section="addSection"/>
         
         <!-- Main Area -->
         <div class="flex-1 bg-gray-50 p-6">
-            <BlockRenderer :blocks="blocks" @select-block="selectBlock"/>
+            <BlockRenderer :build="builder" @select-block="selectBlock"/>
+            {{  builder  }}
         </div>
 
         <!-- Panneau de configuration -->
@@ -77,13 +78,19 @@ import { ref, computed } from 'vue';
 import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 
-const blocks = ref([]);
+const builder = ref({
+    sections: []
+});
 const selectedBlock = ref(null);
 
+//ajoute une section
+const addSection = (layout) => {
+    builder.value.sections.push({...layout, id: Date.now()})
+}
 
 // Ajouter un bloc à la liste
 const addBlock = (block) => {
-    blocks.value.push({ ...block, id: Date.now() });
+    builder.value.sections.push({ ...block, id: Date.now() });
     console.log(blocks.value)
 };
 

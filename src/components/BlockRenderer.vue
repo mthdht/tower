@@ -1,12 +1,12 @@
 <template>
     <div>
       <div
-        v-for="(block, index) in props.blocks"
-        :key="block.id"
+        v-for="(section, index) in props.build.sections"
+        :key="section.type"
         class="border border-gray-300 rounded p-4 mb-4"
-        @click="$emit('select-block', block)"
+        @click="$emit('select-section', section)"
       >
-        <component :is="getBlockComponent(block.type)" :block="block" />
+      {{  section.type }}
       </div>
     </div>
 </template>
@@ -19,8 +19,8 @@ import CardBlock from './CardBlock.vue';
 import ColumnBlock  from './ColumnBlock.vue'
   
 const props = defineProps({
-    blocks: {
-        type: Array,
+    build: {
+        type: Object,
         required: true,
     },
 });   

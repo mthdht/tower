@@ -31,16 +31,6 @@ const getBlockComponent = (type) => {
     return components[type] || null;
 };
 
-// Ajouter une carte dans une colonne spécifique
-const addCardToColumn = (colIndex) => {
-    props.block.columns[colIndex].items.push({
-        type: 'card',
-        imageSrc: '',
-        title: 'Titre par défaut',
-        description: 'Description par défaut',
-    });
-};
-  
   // Générer un style CSS pour la grille
 const gridTemplate = computed(() => {
     return `grid-template-columns: repeat(${props.block.columnCount}, 1fr);`;
