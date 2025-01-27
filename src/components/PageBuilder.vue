@@ -5,8 +5,11 @@
         
         <!-- Main Area -->
         <div class="flex-1 bg-gray-50 p-6">
-            <BlockRenderer :build="builder" @select-block="selectBlock"/>
-            {{  builder  }}
+            <BlockRenderer @select-block="selectBlock"/>
+            <pre>
+
+                {{  builder  }}
+            </pre>
         </div>
 
         <!-- Panneau de configuration -->
@@ -74,30 +77,44 @@
 </template>
   
 <script setup>
-import { ref, computed } from 'vue';
+import { ref} from 'vue';
 import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
+import { builder } from './store.js'
 
-const builder = ref({
-    sections: []
-});
 const selectedBlock = ref(null);
 
 //ajoute une section
 const addSection = (layout) => {
-    builder.value.sections.push({...layout, id: Date.now()})
+    let section = {
+        ...layout, 
+        id: builder.sectionId, 
+        blocks: createBlocks(layout)
+    }
+    builder.sections.push(section)
+    builder.currentSection = section
+    builder.sectionId++
+    builder.sectionOrder++
 }
 
-// Ajouter un bloc à la liste
-const addBlock = (block) => {
-    builder.value.sections.push({ ...block, id: Date.now() });
-    console.log(blocks.value)
-};
+const createBlocks = (layout) => {
+    const blocks = []
+    let order = 1
+    for (let index = 0; index < layout.columns; index++) {
+        blocks.push({
+            id: builder.blockId,
+            sectionId: builder.sectionId,
+            order: order,
+            components: [],
+        })
+        order++
+        builder.blockId++
+    }
+    builder.currentBlock = blocks[0]
+    
+    return blocks
+}
 
-  // Sélectionner un bloc pour l'éditer
-const selectBlock = (block) => {
-    selectedBlock.value = block;
-};
 
 </script>
   

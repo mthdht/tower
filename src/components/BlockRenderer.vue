@@ -1,23 +1,28 @@
 <template>
     <div>
       <div
-        v-for="(section, index) in props.build.sections"
+        v-for="(section, index) in builder.sections"
         :key="section.type"
-        class="border border-gray-300 rounded p-4 mb-4"
+        class="section border border-gray-300 rounded p-4 mb-4 grid"
         @click="$emit('select-section', section)"
+        :style="`grid-template-columns: repeat(${section.columns}, 1fr);`"
+        :class="{'border-sky-500': section == builder.currentSection}"
       >
-      {{  section.type }}
+
+        <div class="block border border-red-300"
+        :class="{'border-emerald-500': block == builder.currentBlock}"
+          v-for="(block, index) in section.blocks">
+          block : {{ block.id }}
+        </div>
+      
       </div>
     </div>
 </template>
   
 <script setup>
-import TextBlock from './TextBlock.vue';
-import ButtonBlock from './ButtonBlock.vue';
-import ImageBlock from './ImageBlock.vue'
-import CardBlock from './CardBlock.vue';
-import ColumnBlock  from './ColumnBlock.vue'
-  
+import { computed } from 'vue';
+import { builder } from './store.js'
+
 const props = defineProps({
     build: {
         type: Object,
@@ -25,16 +30,8 @@ const props = defineProps({
     },
 });   
 
-// Fonction de mapping
-const getBlockComponent = (type) => {
-  const components = {
-    text: TextBlock,
-    button: ButtonBlock,
-    image: ImageBlock,
-    card: CardBlock,
-    columns: ColumnBlock
-  };
-  return components[type] || null;
-};
+const gridTemplate = computed(() => {
+    return `grid-template-columns: repeat(${props.build.columnCount}, 1fr);`;
+});
 </script>
   
