@@ -5,16 +5,16 @@
         
         <!-- Main Area -->
         <div class="flex-1 bg-gray-50 p-6">
-            <BlockRenderer @selectElement="selectElement"/>
+            <BlockRenderer @selectSection="selectSection" @selectBlock="selectBlock"/>
             <pre>
                 {{  builder  }}
             </pre>
         </div>
 
         <!-- Panneau de configuration -->
-        <div v-if="selectedSection" class="w-64 bg-white shadow-md p-4">
+        <div v-if="selectedElement" class="w-64 bg-white shadow-md p-4">
             <h2 class="text-lg font-bold mb-4">Configuration</h2>
-            {{  selectedSection }}
+            {{  selectedElement }}
         </div>
 
     </div>
@@ -26,7 +26,7 @@ import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 import { builder } from './store.js'
 
-const selectedSection = ref(null);
+const selectedElement = ref({section: null, block: null});
 
 //ajoute une section
 const addSection = (layout) => {
@@ -59,9 +59,17 @@ const createBlocks = (layout) => {
     return blocks
 }
 
-const selectElement = (element) => {
-    console.log(element)
-    selectedSection.value = element
+const selectSection = (section) => {
+    selectedElement.value.section = section
+    builder.currentSection = section
+    if (builder.currentBlock.sectionId !== section.id) {
+        builder.currentBlock = section.blocks[0]
+    }
+}
+
+const selectBlock = (block) => {
+    selectedElement.value.block = block
+    builder.currentBlock = block
 }
 
 
