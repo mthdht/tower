@@ -32,9 +32,9 @@
                     <div class="mb-4">
                         <label for="layout" class="block">Layout (columns)</label>
                         <div class="flex justify-center gap-4 items-center">
-                            <button class="size-8 p-2 border flex justify-center items-center">-</button>
+                            <button class="size-8 p-2 border flex justify-center items-center" @click="removeBlock">-</button>
                             <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.columns }}</div>
-                            <button class="size-8 p-2 border flex justify-center items-center" @click="addColumn">+</button>
+                            <button class="size-8 p-2 border flex justify-center items-center" @click="addBlock">+</button>
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                     </div>
                 </div>
 
-                <pre>{{ builder.selectedElement.section }}</pre>
+                <pre>{{ builder.selectedElement }}</pre>
             </div>
 
             <div class="block-tab space-y-4" v-show="configPanelToShow == 'block'">
@@ -90,7 +90,7 @@ import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 import { useBuilder } from './store.js'
 
-const { builder, addSection, selectSection, selectBlock, selectComponent, addComponent, addColumn } = useBuilder()
+const { builder, addSection, selectSection, selectBlock, selectComponent, addComponent, addBlock, removeBlock } = useBuilder()
 
 const configPanelToShow = ref('section')
 

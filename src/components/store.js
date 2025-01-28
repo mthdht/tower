@@ -39,7 +39,8 @@ export const useBuilder = () => {
         return blocks
     }
 
-    const addColumn = () => {
+    const addBlock = () => {
+        builder.selectedElement.section.columns++
         builder.selectedElement.section.blocks.push({
             id: builder.blockId,
             sectionId: builder.sectionId,
@@ -49,9 +50,15 @@ export const useBuilder = () => {
         builder.blockId++
     }
     
+    const removeBlock = () => {
+        if (!builder.selectedElement.section || builder.selectedElement.section.blocks.length <= 0) return;
+        builder.selectedElement.section.columns--
+        builder.selectedElement.section.blocks.pop();
+    };
+
     const selectSection = (section) => {
         builder.selectedElement.section = section
-        if (builder.selectedElement.block.sectionId !== section.id) {
+        if (builder.selectedElement.block?.sectionId !== section.id) {
             builder.selectedElement.block = section.blocks[section.blocks.length - 1]
         }
     }
@@ -79,5 +86,5 @@ export const useBuilder = () => {
         builder.selectedElement.component = component
     }
 
-    return { builder, addSection, selectSection, selectBlock, selectComponent, addComponent, addColumn }
+    return { builder, addSection, selectSection, selectBlock, selectComponent, addComponent, addBlock, removeBlock }
 }
