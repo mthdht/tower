@@ -1,4 +1,4 @@
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 
 export const useBuilder = () => {
     const builder = reactive({
@@ -50,5 +50,14 @@ export const useBuilder = () => {
         builder.selectedElement.block = block
     }
 
-    return { builder, addSection, selectSection, selectBlock}
+    const addComponent = (component) => {
+        if (!builder.selectedElement.block) {
+            console.log('select a block')
+            return
+        }
+        builder.selectedElement.block.components.push(component)
+        console.log(component, 'add component')
+    }
+
+    return { builder, addSection, selectSection, selectBlock, addComponent }
 }

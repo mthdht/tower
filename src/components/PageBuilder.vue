@@ -1,7 +1,7 @@
 <template>
     <div class="flex h-screen">
         <!-- Sidebar -->
-        <Sidebar @add-section="addSection"/>
+        <Sidebar @add-section="addSection" @add-component="addComponent"/>
         
         <!-- Main Area -->
         <div class="flex-1 bg-gray-50 p-6">
@@ -24,12 +24,11 @@
 </template>
   
 <script setup>
-import { ref} from 'vue';
 import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 import { useBuilder } from './store.js'
 
-const { builder, addSection, selectSection, selectBlock } = useBuilder()
+const { builder, addSection, selectSection, selectBlock, addComponent } = useBuilder()
 
 </script>
   

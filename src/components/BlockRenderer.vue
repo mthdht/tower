@@ -2,18 +2,18 @@
     <div>
       <button @click="console.log(props.builder)">log builder</button>
       <div
-        v-for="(section, index) in props.builder.sections"
+        v-for="(section) in props.builder.sections"
         :key="section.id"
         class="section border border-gray-300 rounded p-4 mb-4 grid"
         @click="$emit('selectSection', section)"
         :style="`grid-template-columns: repeat(${section.columns}, 1fr);`"
         :class="{'border-sky-500': section == props.builder.selectedElement.section}"
       >
-
+        section: {{  section.id }}
         <div class="block border"
           :key="block.id"
           :class="{'border-emerald-500': block == props.builder.selectedElement.block}"
-          v-for="(block, index) in section.blocks"
+          v-for="(block) in section.blocks"
           @click="$emit('selectBlock', block)">
           block : {{ block.id }}
         </div>

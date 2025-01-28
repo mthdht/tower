@@ -1,12 +1,12 @@
 <template>
     <button class="bg-slate-200 py-2 px-4 rounded hover:bg-slate-300">
-        {{ props.block.labelText || 'Bouton' }}
+        {{ props.specs.labelText || 'Bouton' }}
     </button>
 </template>
   
 <script setup>
 const props = defineProps({
-  block: {
+  specs: {
     type: Object,
     required: true,
   },

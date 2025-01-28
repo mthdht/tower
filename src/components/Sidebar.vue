@@ -17,12 +17,12 @@
     </div>
 
     <div class="component-tab grid grid-cols-2 gap-2" v-show="panelToShow == 'components'">
-      <div v-for="block in availableBlocks" :key="block.type" >
+      <div v-for="component in availableComponents" :key="component.type" >
         <button
           class="w-full bg-sky-500 text-white py-2 px-4 rounded hover:bg-primary-dark"
-          @click="$emit('add-component', block)"
+          @click="$emit('add-component', component)"
         >
-          {{ block.label }}
+          {{ component.label }}
         </button>
       </div>
     </div>
@@ -39,17 +39,9 @@ const availableLayouts = [
   { type: '1-col', label: 'one col', columns: 1},
   { type: '2-col', label: 'two col', columns: 2}
 ]
-const availableBlocks = [
+const availableComponents = [
   { type: 'text', label: 'Texte', content: 'Un texte par défaut' },
-  { type: 'image', label: 'Image', src: '' },
   { type: 'button', label: 'Bouton', labelText: 'Cliquez ici' },
-  {
-    type: 'card',
-    label: 'Carte',
-    imageSrc: '',
-    title: 'Titre de la carte',
-    description: 'Description de la carte',
-  },
 ];
 </script>
 
