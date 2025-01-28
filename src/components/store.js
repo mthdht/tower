@@ -38,6 +38,16 @@ export const useBuilder = () => {
         
         return blocks
     }
+
+    const addColumn = () => {
+        builder.selectedElement.section.blocks.push({
+            id: builder.blockId,
+            sectionId: builder.sectionId,
+            order: builder.selectedElement.section.blocks.length + 1,
+            components: [],
+        })
+        builder.blockId++
+    }
     
     const selectSection = (section) => {
         builder.selectedElement.section = section
@@ -69,5 +79,5 @@ export const useBuilder = () => {
         builder.selectedElement.component = component
     }
 
-    return { builder, addSection, selectSection, selectBlock, selectComponent, addComponent }
+    return { builder, addSection, selectSection, selectBlock, selectComponent, addComponent, addColumn }
 }
