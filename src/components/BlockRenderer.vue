@@ -1,6 +1,7 @@
 <template>
     <div>
       <button @click="console.log(props.builder)">log builder</button>
+
       <div
         v-for="(section) in props.builder.sections"
         :key="section.id"
@@ -15,7 +16,11 @@
           :class="{'border-emerald-500': block == props.builder.selectedElement.block}"
           v-for="(block) in section.blocks"
           @click="$emit('selectBlock', block)">
-          block : {{ block.id }}
+          <p v-show="!block.components.length">
+            block : {{ block.id }}
+          </p>
+
+          <component v-for="(component, index) in block.components" :key="index" :is="getComponent(component)" :component="component"></component>
         </div>
       
       </div>
@@ -23,10 +28,18 @@
 </template>
   
 <script setup>
+import TextBlock from './TextBlock.vue'
 
 const props = defineProps({
     builder: Object
 });   
+
+const getComponent = (component) => {
+  const components = {
+    'text': TextBlock
+  }
+  return components[component.type]
+}
 
 
 </script>
