@@ -13,7 +13,6 @@ const props = defineProps({
 });
 
 const styles = computed(() => {
-    console.log(props.component);
     return {
         fontSize: props.component.style.fontSize || '16px',
         color: props.component.style.color || 'black',

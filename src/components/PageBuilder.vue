@@ -14,21 +14,55 @@
         <!-- Panneau de configuration -->
         <div v-if="builder.selectedElement" class="w-64 bg-white shadow-md p-4">
             <h2 class="text-lg font-bold mb-4">Configuration</h2>
-            <pre>
+            <div class="config-tabs grid grid-cols-3 gap-2 mb-8">
+                <button @click="configPanelToShow = 'section'">section</button>
+                <button @click="configPanelToShow = 'block'">block</button>
+                <button @click="configPanelToShow = 'component'">component</button>
+            </div>
 
-                {{  builder.selectedElement }}
-            </pre>
+            <div class="section-tab space-y-4" v-show="configPanelToShow == 'section'">
+                <h3>section config</h3>
+
+                <p v-show="!builder.selectedElement.section">
+                    please select a section or create one !
+                </p>
+
+                <pre>{{ builder.selectedElement.section }}</pre>
+            </div>
+
+            <div class="block-tab space-y-4" v-show="configPanelToShow == 'block'">
+                <h3>block config</h3>
+
+                <p v-show="!builder.selectedElement.block">
+                    please select a block or create one !
+                </p>
+
+                <pre>{{ builder.selectedElement.block }}</pre>
+            </div>
+
+            <div class="component-tab space-y-4" v-show="configPanelToShow == 'component'">
+                <h3>component config</h3>
+
+                <p v-show="!builder.selectedElement.component">
+                    please select a component or create one !
+                </p>
+
+                <pre>{{ builder.selectedElement.component }}</pre>
+            </div>
         </div>
 
     </div>
 </template>
   
 <script setup>
+import { ref } from 'vue';
 import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 import { useBuilder } from './store.js'
 
 const { builder, addSection, selectSection, selectBlock, selectComponent, addComponent } = useBuilder()
+
+const configPanelToShow = ref('section')
 
 </script>
   
