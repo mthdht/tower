@@ -40,8 +40,16 @@ const availableLayouts = [
   { type: '2-col', label: 'two col', columns: 2}
 ]
 const availableComponents = [
-  { type: 'text', label: 'Texte', content: 'Un texte par défaut' },
-  { type: 'button', label: 'Bouton', labelText: 'Cliquez ici' },
+  { type: 'text', label: 'Texte', content: 'Un texte par défaut', style: {
+    fontSize: '12px',
+    color: '#bada55',
+    
+  } },
+  { type: 'button', label: 'Bouton', labelText: 'Cliquez ici', style: {
+    fontSize: '18px',
+    color: '#f1f1f1',
+    
+  } },
 ];
 </script>
 

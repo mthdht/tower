@@ -20,7 +20,11 @@
             block : {{ block.id }}
           </p>
 
-          <component v-for="(component, index) in block.components" :key="index" :is="getComponent(component)" :component="component"></component>
+          <component v-for="(component, index) in block.components" 
+            :key="index" :is="getComponent(component)" 
+            :component="component"
+            @click="$emit('selectComponent', component)"
+          ></component>
         </div>
       
       </div>

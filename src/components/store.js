@@ -6,7 +6,7 @@ export const useBuilder = () => {
         sectionId: 1,
         sectionOrder: 1,
         blockId: 1,
-        selectedElement: {section: null, block: null}
+        selectedElement: {section: null, block: null, component: null}
     })
 
     const addSection = (layout) => {
@@ -48,6 +48,13 @@ export const useBuilder = () => {
     
     const selectBlock = (block) => {
         builder.selectedElement.block = block
+        if (builder.selectedElement.component?.blockId !== block.id) {
+            builder.selectedElement.component = block.components[block.components.length - 1]
+        }
+    }
+
+    const selectComponent = (component) => {
+        builder.selectedElement.component = component
     }
 
     const addComponent = (component) => {
@@ -55,9 +62,12 @@ export const useBuilder = () => {
             console.log('select a block')
             return
         }
-        builder.selectedElement.block.components.push(component)
-        console.log(component, 'add component')
+        builder.selectedElement.block.components.push({
+            ...component,
+            blockId: builder.selectedElement.block.id
+        })
+        builder.selectedElement.component = component
     }
 
-    return { builder, addSection, selectSection, selectBlock, addComponent }
+    return { builder, addSection, selectSection, selectBlock, selectComponent, addComponent }
 }

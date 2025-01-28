@@ -5,7 +5,7 @@
         
         <!-- Main Area -->
         <div class="flex-1 bg-gray-50 p-6">
-            <BlockRenderer @selectSection="selectSection" @selectBlock="selectBlock" :builder="builder"/>
+            <BlockRenderer @selectSection="selectSection" @selectBlock="selectBlock" @selectComponent="selectComponent" :builder="builder"/>
             <pre>
                 {{  builder  }}
             </pre>
@@ -28,7 +28,7 @@ import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 import { useBuilder } from './store.js'
 
-const { builder, addSection, selectSection, selectBlock, addComponent } = useBuilder()
+const { builder, addSection, selectSection, selectBlock, selectComponent, addComponent } = useBuilder()
 
 </script>
   
