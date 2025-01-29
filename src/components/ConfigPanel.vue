@@ -1,0 +1,115 @@
+<template>
+     <!-- Panneau de configuration -->
+     <div v-if="builder.selectedElement" class="w-80 bg-white shadow-md p-4">
+            <h2 class="text-lg font-bold mb-4">Configuration</h2>
+            <div class="config-tabs grid grid-cols-3 gap-2 mb-8">
+                <button @click="configPanel.panel = 'section'">section</button>
+                <button @click="configPanel.panel = 'block'">block</button>
+                <button @click="configPanel.panel = 'component'">component</button>
+            </div>
+
+            <div class="section-tab space-y-4" v-show="configPanel.panel == 'section'">
+                <p v-show="!builder.selectedElement.section">
+
+                    {{  builder }}
+                    please select a section or create one !
+                </p>
+
+                <div v-if="builder.selectedElement.section">
+                    <!-- Layout of section eg. number of columns and gap between-->
+                    <div class="layout-config border p-4 space-y-6">
+
+                        <h3 class="font-semibold text-xl flex justify-between cursor-pointer" @click="configPanel.section.showLayout = !configPanel.section.showLayout">
+                            Layout 
+                            <span class="">+</span>
+                        </h3>
+                        
+                        <div class="space-y-4" v-show="configPanel.section.showLayout">
+                            <div class="columns-config flex gap-2 items-center">
+                                <label>Columns: </label>
+
+                                <div class="flex justify-center gap-4 items-center">
+                                    <button class="size-8 p-2 border flex justify-center items-center" 
+                                    @click="removeBlock" 
+                                    :disabled="builder.selectedElement.section.blocks.length <= 1">-</button>
+                                    
+                                    <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.columns }}</div>
+                                    
+                                    <button class="size-8 p-2 border flex justify-center items-center" @click="addBlock">+</button>
+                                </div>
+                            </div>
+
+                            <div class="gap-config flex gap-2 items-center">
+                                <label>Gap: </label>
+                                <div class="flex justify-center gap-4 items-center">
+                                    <button class="size-8 p-2 border flex justify-center items-center" 
+                                        @click="builder.selectedElement.section.styles.gap--" 
+                                        :disabled="builder.selectedElement.section.styles.gap <= 0">-</button>
+                                    
+                                    <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.styles.gap }}</div>
+                                    
+                                    <button class="size-8 p-2 border flex justify-center items-center" 
+                                        @click="builder.selectedElement.section.styles.gap++" >+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     
+                    <div class="mb-4">
+                        <label for="bg-color" class="block">Background Color</label>
+                        <input type="color" v-model="builder.selectedElement.section.styles.bgColor" id="bg-color" class="w-full p-2 border rounded"/>
+                    </div>
+
+                     
+                    <div class="mb-4 grid grid-cols-2 gap-2">
+                        <div>
+                            <label for="padding" class="block">Padding</label>
+                            <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                        </div>
+                        <div>
+                            <label for="margin" class="block">Margin</label>
+                            <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                        </div>
+                    </div>
+                </div> 
+
+                <pre>{{ builder.selectedElement }}</pre>
+            </div>
+
+            <div class="block-tab space-y-4" v-show="configPanel.panel == 'block'">
+                <h3>block config</h3>
+
+                <p v-show="!builder.selectedElement.block">
+                    please select a block or create one !
+                </p>
+
+                <pre>{{ builder.selectedElement.block }}</pre>
+            </div>
+
+            <div class="component-tab space-y-4" v-show="configPanel.panel == 'component'">
+                <h3>component config</h3>
+
+                <p v-show="!builder.selectedElement.component">
+                    please select a component or create one !
+                </p>
+
+                <pre>{{ builder.selectedElement.component }}</pre>
+            </div>
+        </div>
+</template>
+
+<script setup>
+import { reactive } from 'vue';
+
+import { useBuilder } from './store.js';
+
+const { builder, removeBlock, addBlock } = useBuilder()
+
+const configPanel = reactive({
+    panel: 'section',
+    section: {
+        showLayout: true
+    }
+})
+</script>

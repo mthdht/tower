@@ -1,14 +1,14 @@
 import { reactive } from "vue";
 
-export const useBuilder = () => {
-    const builder = reactive({
-        sections: [],
-        sectionId: 1,
-        sectionOrder: 1,
-        blockId: 1,
-        selectedElement: {section: null, block: null, component: null}
-    })
+const builder = reactive({
+    sections: [],
+    sectionId: 1,
+    sectionOrder: 1,
+    blockId: 1,
+    selectedElement: {section: null, block: null, component: null}
+})
 
+export const useBuilder = () => {
     const addSection = (layout) => {
         let section = {
             ...layout, 
