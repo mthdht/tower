@@ -1,6 +1,6 @@
 <template>
      <!-- Panneau de configuration -->
-     <div v-if="builder.selectedElement" class="w-80 bg-white shadow-md p-4">
+     <div v-if="builder.selectedElement" class="w-80 bg-white shadow-md p-2">
             <h2 class="text-lg font-bold mb-4">Configuration</h2>
             <div class="config-tabs grid grid-cols-3 gap-2 mb-8">
                 <button @click="configPanel.panel = 'section'">section</button>
@@ -15,17 +15,17 @@
                     please select a section or create one !
                 </p>
 
-                <div v-if="builder.selectedElement.section">
+                <div v-if="builder.selectedElement.section" class="space-y-8">
                     <!-- Layout of section eg. number of columns and gap between-->
-                    <div class="layout-config border p-4 space-y-6">
+                    <div class="layout-config border">
 
-                        <h3 class="font-semibold text-xl flex justify-between cursor-pointer" @click="configPanel.section.showLayout = !configPanel.section.showLayout">
+                        <h3 class="font-semibold text-xl flex justify-between cursor-pointer bg-slate-100 p-4" @click="configPanel.section.showLayout = !configPanel.section.showLayout">
                             Layout 
                             <span class="">+</span>
                         </h3>
                         
-                        <div class="space-y-4" v-show="configPanel.section.showLayout">
-                            <div class="columns-config flex gap-2 items-center">
+                        <div class="space-y-4 p-4" v-show="configPanel.section.showLayout">
+                            <div class="columns-config flex gap-2 items-center justify-between">
                                 <label>Columns: </label>
 
                                 <div class="flex justify-center gap-4 items-center">
@@ -39,7 +39,7 @@
                                 </div>
                             </div>
 
-                            <div class="gap-config flex gap-2 items-center">
+                            <div class="gap-config flex gap-2 items-center justify-between">
                                 <label>Gap: </label>
                                 <div class="flex justify-center gap-4 items-center">
                                     <button class="size-8 p-2 border flex justify-center items-center" 
@@ -55,10 +55,23 @@
                         </div>
                     </div>
 
+                    <div class="colors-config border">
+                        <h3 class="font-semibold text-xl flex justify-between cursor-pointer p-4 bg-slate-100" @click="configPanel.section.showColors = !configPanel.section.showColors">
+                            Colors 
+                            <span class="">+</span>
+                        </h3>
+
+                        <div class="space-y-4 p-4" v-show="configPanel.section.showColors">
+                            <div class="gap-config flex gap-2 items-center justify-between">
+                                <label for="bg-color" class="block">Background Color: </label>
+                                <input type="color" v-model="builder.selectedElement.section.styles.bgColor" id="bg-color" class="h-10 p-px border rounded"/>
+                            </div>
+                        </div>
+                    </div>
+
                      
                     <div class="mb-4">
-                        <label for="bg-color" class="block">Background Color</label>
-                        <input type="color" v-model="builder.selectedElement.section.styles.bgColor" id="bg-color" class="w-full p-2 border rounded"/>
+                        
                     </div>
 
                      
@@ -109,7 +122,8 @@ const { builder, removeBlock, addBlock } = useBuilder()
 const configPanel = reactive({
     panel: 'section',
     section: {
-        showLayout: true
+        showLayout: true,
+        colors: false
     }
 })
 </script>
