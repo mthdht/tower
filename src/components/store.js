@@ -52,9 +52,19 @@ export const useBuilder = () => {
     }
     
     const removeBlock = () => {
-        if (!builder.selectedElement.section || builder.selectedElement.section.blocks.length <= 1) return;
+        if (!builder.selectedElement.section || builder.selectedElement.section.blocks.length <= 0) return;
         builder.selectedElement.section.columns--
         builder.selectedElement.section.blocks.pop();
+        if (!builder.selectedElement.section.blocks.length) {
+            builder.selectedElement.section.blocks.push({
+                id: builder.blockId,
+                sectionId: builder.selectedElement.section.id,
+                order: 1,
+                components: [],
+            })
+            builder.selectedElement.section.columns++
+            builder.blockId++
+        }
     };
 
     const selectSection = (section) => {

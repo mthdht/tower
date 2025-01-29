@@ -50,13 +50,10 @@ const sectionStyles = (section) => {
   return {
     gridTemplateColumns: `repeat(${section.columns}, 1fr)`,
     backgroundColor: section.styles.bgColor,
-    padding: section.styles.padding + 'px'
+    padding: section.styles.padding + 'px',
+    margin: section.styles.margin + 'px'
   }
 }
-
-console.log(sectionStyles({columns: 2,styles: {
-  bgColor: "#bada55"
-}}))
 
 </script>
   

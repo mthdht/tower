@@ -52,11 +52,11 @@
                     <div class="mb-4 grid grid-cols-2 gap-2">
                         <div>
                             <label for="padding" class="block">Padding</label>
-                            <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20px"/>
+                            <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
                         </div>
                         <div>
                             <label for="margin" class="block">Margin</label>
-                            <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g. 20px"/>
+                            <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
                         </div>
                     </div>
                 </div> 
