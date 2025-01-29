@@ -14,7 +14,9 @@ export const useBuilder = () => {
             ...layout, 
             id: builder.sectionId, 
             blocks: createBlocks(layout),
-            styles: {}
+            styles: {
+                gap: 12
+            }
         }
         builder.sections.push(section)
         builder.selectedElement.section = section

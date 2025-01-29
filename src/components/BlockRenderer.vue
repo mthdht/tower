@@ -10,7 +10,6 @@
         :style="sectionStyles(section)"
         :class="{'border-sky-500': section == props.builder.selectedElement.section}"
       >
-        section: {{  section.id }}
         <div class="block border"
           :key="block.id"
           :class="{'border-emerald-500': block == props.builder.selectedElement.block}"
@@ -51,7 +50,8 @@ const sectionStyles = (section) => {
     gridTemplateColumns: `repeat(${section.columns}, 1fr)`,
     backgroundColor: section.styles.bgColor,
     padding: section.styles.padding + 'px',
-    margin: section.styles.margin + 'px'
+    margin: section.styles.margin + 'px',
+    gap: section.styles.gap + 'px'
   }
 }
 

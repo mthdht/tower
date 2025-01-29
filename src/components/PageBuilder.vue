@@ -12,33 +12,53 @@
         </div>
 
         <!-- Panneau de configuration -->
-        <div v-if="builder.selectedElement" class="w-64 bg-white shadow-md p-4">
+        <div v-if="builder.selectedElement" class="w-80 bg-white shadow-md p-4">
             <h2 class="text-lg font-bold mb-4">Configuration</h2>
             <div class="config-tabs grid grid-cols-3 gap-2 mb-8">
-                <button @click="configPanelToShow = 'section'">section</button>
-                <button @click="configPanelToShow = 'block'">block</button>
-                <button @click="configPanelToShow = 'component'">component</button>
+                <button @click="configPanel.panel = 'section'">section</button>
+                <button @click="configPanel.panel = 'block'">block</button>
+                <button @click="configPanel.panel = 'component'">component</button>
             </div>
 
-            <div class="section-tab space-y-4" v-show="configPanelToShow == 'section'">
-                <h3>section config</h3>
-
+            <div class="section-tab space-y-4" v-show="configPanel.panel == 'section'">
                 <p v-show="!builder.selectedElement.section">
                     please select a section or create one !
                 </p>
 
                 <div v-if="builder.selectedElement.section">
-                    
-                    <div class="mb-4">
-                        <label for="layout" class="block">Layout (columns)</label>
-                        <div class="flex justify-center gap-4 items-center">
-                            <button class="size-8 p-2 border flex justify-center items-center" 
-                                @click="removeBlock" 
-                                :disabled="builder.selectedElement.section.blocks.length <= 1">-</button>
+                    <!-- Layout of section eg. number of columns and gap between-->
+                    <div class="layout-config border p-4 space-y-6">
 
-                            <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.columns }}</div>
-                            
-                            <button class="size-8 p-2 border flex justify-center items-center" @click="addBlock">+</button>
+                        <h3 class="font-semibold text-xl flex justify-between cursor-pointer" @click="configPanel.section.showLayout = !configPanel.section.showLayout">Layout <span class="">+</span></h3>
+                        
+                        <div class="space-y-4" v-show="configPanel.section.showLayout">
+                            <div class="columns-config flex gap-2 items-center">
+                                <label>Columns: </label>
+
+                                <div class="flex justify-center gap-4 items-center">
+                                    <button class="size-8 p-2 border flex justify-center items-center" 
+                                    @click="removeBlock" 
+                                    :disabled="builder.selectedElement.section.blocks.length <= 1">-</button>
+                                    
+                                    <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.columns }}</div>
+                                    
+                                    <button class="size-8 p-2 border flex justify-center items-center" @click="addBlock">+</button>
+                                </div>
+                            </div>
+
+                            <div class="gap-config flex gap-2 items-center">
+                                <label>Gap: </label>
+                                <div class="flex justify-center gap-4 items-center">
+                                    <button class="size-8 p-2 border flex justify-center items-center" 
+                                        @click="builder.selectedElement.section.styles.gap--" 
+                                        :disabled="builder.selectedElement.section.styles.gap <= 0">-</button>
+                                    
+                                    <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.styles.gap }}</div>
+                                    
+                                    <button class="size-8 p-2 border flex justify-center items-center" 
+                                        @click="builder.selectedElement.section.styles.gap++" >+</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -64,7 +84,7 @@
                 <pre>{{ builder.selectedElement }}</pre>
             </div>
 
-            <div class="block-tab space-y-4" v-show="configPanelToShow == 'block'">
+            <div class="block-tab space-y-4" v-show="configPanel.panel == 'block'">
                 <h3>block config</h3>
 
                 <p v-show="!builder.selectedElement.block">
@@ -74,7 +94,7 @@
                 <pre>{{ builder.selectedElement.block }}</pre>
             </div>
 
-            <div class="component-tab space-y-4" v-show="configPanelToShow == 'component'">
+            <div class="component-tab space-y-4" v-show="configPanel.panel == 'component'">
                 <h3>component config</h3>
 
                 <p v-show="!builder.selectedElement.component">
@@ -89,14 +109,19 @@
 </template>
   
 <script setup>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 import Sidebar from './Sidebar.vue';
 import BlockRenderer from './BlockRenderer.vue';
 import { useBuilder } from './store.js'
 
 const { builder, addSection, selectSection, selectBlock, selectComponent, addComponent, addBlock, removeBlock } = useBuilder()
 
-const configPanelToShow = ref('section')
+const configPanel = reactive({
+    panel: 'section',
+    section: {
+        showLayout: true
+    }
+})
 
 </script>
   
