@@ -51,7 +51,8 @@ const sectionStyles = (section) => {
     backgroundColor: section.styles.bgColor,
     padding: section.styles.padding + 'px',
     margin: section.styles.margin + 'px',
-    gap: section.styles.gap + 'px'
+    gap: section.styles.gap + 'px',
+    border: `${section.styles.border.width}px solid ${section.styles.border.color}`
   }
 }
 

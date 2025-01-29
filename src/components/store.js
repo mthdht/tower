@@ -15,7 +15,11 @@ export const useBuilder = () => {
             id: builder.sectionId, 
             blocks: createBlocks(layout),
             styles: {
-                gap: 12
+                gap: 12,
+                border: {
+                    width: 0,
+                    color: '#000000'
+                }
             }
         }
         builder.sections.push(section)

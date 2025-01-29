@@ -1,6 +1,6 @@
 <template>
      <!-- Panneau de configuration -->
-     <div v-if="builder.selectedElement" class="w-80 bg-white shadow-md p-2">
+     <div v-if="configPanel.showPanels" class="w-80 bg-white shadow-md p-2">
             <h2 class="text-lg font-bold mb-4">Configuration</h2>
             <div class="config-tabs grid grid-cols-3 gap-2 mb-8">
                 <button @click="configPanel.panel = 'section'">section</button>
@@ -10,8 +10,6 @@
 
             <div class="section-tab space-y-4" v-show="configPanel.panel == 'section'">
                 <p v-show="!builder.selectedElement.section">
-
-                    {{  builder }}
                     please select a section or create one !
                 </p>
 
@@ -68,21 +66,36 @@
                             </div>
                         </div>
                     </div>
+                    
+                    <div class="box-config border">
+                        <h3 class="font-semibold text-xl flex justify-between cursor-pointer p-4 bg-slate-100" @click="configPanel.section.showBoxModel = !configPanel.section.showBoxModel">
+                            Box model 
+                            <span class="">+</span>
+                        </h3>
 
-                     
-                    <div class="mb-4">
-                        
-                    </div>
+                        <div class="space-y-4 p-4" v-show="configPanel.section.showBoxModel">
+                            <div class="mb-4 grid grid-cols-2 gap-2">
+                                <div class="space-y-2">
+                                    <label class="block">Padding:</label>
+                                    <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                </div>
 
-                     
-                    <div class="mb-4 grid grid-cols-2 gap-2">
-                        <div>
-                            <label for="padding" class="block">Padding</label>
-                            <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
-                        </div>
-                        <div>
-                            <label for="margin" class="block">Margin</label>
-                            <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                <div class="space-y-2">
+                                    <label class="block">Margin:</label>
+                                    <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label class="block">border width:</label>
+                                    <input type="text" v-model="builder.selectedElement.section.styles.border.width" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label class="block">border color:</label>
+                                    <input type="color" v-model="builder.selectedElement.section.styles.border.color" class="h-10 w-full border rounded"/>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div> 
@@ -120,10 +133,12 @@ import { useBuilder } from './store.js';
 const { builder, removeBlock, addBlock } = useBuilder()
 
 const configPanel = reactive({
+    showPanels: true,
     panel: 'section',
     section: {
         showLayout: true,
-        colors: false
+        showColors: false,
+        showBoxModel: false
     }
 })
 </script>
