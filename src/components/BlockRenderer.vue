@@ -5,9 +5,9 @@
       <div
         v-for="(section) in props.builder.sections"
         :key="section.id"
-        class="section border border-gray-300 rounded p-4 mb-4 grid"
+        class="section border border-gray-300 rounded mb-4 grid"
         @click="$emit('selectSection', section)"
-        :style="`grid-template-columns: repeat(${section.columns}, 1fr);`"
+        :style="sectionStyles(section)"
         :class="{'border-sky-500': section == props.builder.selectedElement.section}"
       >
         section: {{  section.id }}
@@ -32,6 +32,7 @@
 </template>
   
 <script setup>
+import { computed } from 'vue';
 import TextBlock from './TextBlock.vue'
 
 const props = defineProps({
@@ -45,6 +46,17 @@ const getComponent = (component) => {
   return components[component.type]
 }
 
+const sectionStyles = (section) => {
+  return {
+    gridTemplateColumns: `repeat(${section.columns}, 1fr)`,
+    backgroundColor: section.styles.bgColor,
+    padding: section.styles.padding + 'px'
+  }
+}
+
+console.log(sectionStyles({columns: 2,styles: {
+  bgColor: "#bada55"
+}}))
 
 </script>
   

@@ -13,7 +13,8 @@ export const useBuilder = () => {
         let section = {
             ...layout, 
             id: builder.sectionId, 
-            blocks: createBlocks(layout)
+            blocks: createBlocks(layout),
+            styles: {}
         }
         builder.sections.push(section)
         builder.selectedElement.section = section
@@ -51,7 +52,7 @@ export const useBuilder = () => {
     }
     
     const removeBlock = () => {
-        if (!builder.selectedElement.section || builder.selectedElement.section.blocks.length <= 0) return;
+        if (!builder.selectedElement.section || builder.selectedElement.section.blocks.length <= 1) return;
         builder.selectedElement.section.columns--
         builder.selectedElement.section.blocks.pop();
     };

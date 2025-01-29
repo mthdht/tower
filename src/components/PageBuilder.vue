@@ -28,34 +28,38 @@
                 </p>
 
                 <div v-if="builder.selectedElement.section">
-                    <!-- Layout Selection -->
+                    
                     <div class="mb-4">
                         <label for="layout" class="block">Layout (columns)</label>
                         <div class="flex justify-center gap-4 items-center">
-                            <button class="size-8 p-2 border flex justify-center items-center" @click="removeBlock">-</button>
+                            <button class="size-8 p-2 border flex justify-center items-center" 
+                                @click="removeBlock" 
+                                :disabled="builder.selectedElement.section.blocks.length <= 1">-</button>
+
                             <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.columns }}</div>
+                            
                             <button class="size-8 p-2 border flex justify-center items-center" @click="addBlock">+</button>
                         </div>
                     </div>
 
-                    <!-- Background Color -->
+                     
                     <div class="mb-4">
                         <label for="bg-color" class="block">Background Color</label>
-                        <input type="color" v-model="builder.selectedElement.section.bgColor" id="bg-color" class="w-full p-2 border rounded"/>
+                        <input type="color" v-model="builder.selectedElement.section.styles.bgColor" id="bg-color" class="w-full p-2 border rounded"/>
                     </div>
 
-                    <!-- Padding and Margin -->
+                     
                     <div class="mb-4 grid grid-cols-2 gap-2">
                         <div>
                             <label for="padding" class="block">Padding</label>
-                            <input type="text" v-model="builder.selectedElement.section.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20px"/>
+                            <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20px"/>
                         </div>
                         <div>
                             <label for="margin" class="block">Margin</label>
-                            <input type="text" v-model="builder.selectedElement.section.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g. 20px"/>
+                            <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g. 20px"/>
                         </div>
                     </div>
-                </div>
+                </div> 
 
                 <pre>{{ builder.selectedElement }}</pre>
             </div>
