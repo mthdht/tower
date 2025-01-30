@@ -82,7 +82,13 @@
                                 <div class="space-y-2">
                                     <label class="block">Width:</label>
                                     <div class="relative">
-                                        <input type="text" v-model="builder.selectedElement.section.styles.width.value" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                        <input type="text" 
+                                            v-model="builder.selectedElement.section.styles.width.value" 
+                                            id="width" 
+                                            class="w-full p-2 border rounded disabled:bg-slate-300 disabled:text-slate-300" 
+                                            placeholder="e.g. 20"
+                                            :disabled="builder.selectedElement.section.styles.width.unit == 'auto'"/>
+
                                         <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center" v-model="builder.selectedElement.section.styles.width.unit">
                                             <option :value="unit" 
                                                 v-for="unit in configPanel.units" 
@@ -94,7 +100,12 @@
                                 <div class="space-y-2">
                                     <label class="block">height:</label>
                                     <div class="relative">
-                                        <input type="text" v-model="builder.selectedElement.section.styles.height.value" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                        <input type="text" 
+                                            v-model="builder.selectedElement.section.styles.height.value" 
+                                            id="padding" 
+                                            class="w-full p-2 border rounded disabled:bg-slate-300 disabled:text-slate-300" 
+                                            placeholder="e.g. 20"
+                                            :disabled="builder.selectedElement.section.styles.height.unit == 'auto'"/>
                                         <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center" v-model="builder.selectedElement.section.styles.height.unit">
                                             <option :value="unit" 
                                                 v-for="unit in configPanel.units" 
