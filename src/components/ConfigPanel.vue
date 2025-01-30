@@ -81,15 +81,15 @@
                             <div class="mb-4 grid grid-cols-2 gap-2">
                                 <div class="space-y-2">
                                     <label class="block">Width:</label>
-                                    <div class="relative">
+                                    <div class="relative overflow-hidden">
                                         <input type="text" 
                                             v-model="builder.selectedElement.section.styles.width.value" 
                                             id="width" 
-                                            class="w-full p-2 border rounded disabled:bg-slate-300 disabled:text-slate-300" 
+                                            class="w-full p-2 border rounded disabled:bg-slate-200 disabled:text-slate-300" 
                                             placeholder="e.g. 20"
                                             :disabled="builder.selectedElement.section.styles.width.unit == 'auto'"/>
 
-                                        <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center" v-model="builder.selectedElement.section.styles.width.unit">
+                                        <select class="absolute right-0 top-0 h-[42px] bg-slate-300 w-15 justify-center focus-visible:outline-0" v-model="builder.selectedElement.section.styles.width.unit">
                                             <option :value="unit" 
                                                 v-for="unit in configPanel.units" 
                                                 class="flex justify-center">{{unit}}</option>
@@ -99,14 +99,14 @@
 
                                 <div class="space-y-2">
                                     <label class="block">height:</label>
-                                    <div class="relative">
+                                    <div class="relative overflow-hidden">
                                         <input type="text" 
                                             v-model="builder.selectedElement.section.styles.height.value" 
                                             id="padding" 
-                                            class="w-full p-2 border rounded disabled:bg-slate-300 disabled:text-slate-300" 
+                                            class="w-full p-2 border rounded disabled:bg-slate-200 disabled:text-slate-300" 
                                             placeholder="e.g. 20"
                                             :disabled="builder.selectedElement.section.styles.height.unit == 'auto'"/>
-                                        <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center" v-model="builder.selectedElement.section.styles.height.unit">
+                                        <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center focus-visible:outline-0" v-model="builder.selectedElement.section.styles.height.unit">
                                             <option :value="unit" 
                                                 v-for="unit in configPanel.units" 
                                                 class="flex justify-center">{{unit}}</option>
