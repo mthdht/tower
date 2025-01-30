@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import { sectionStyles } from "./styles/section.js"
 
 const builder = reactive({
     sections: [],
@@ -14,13 +15,7 @@ export const useBuilder = () => {
             ...layout, 
             id: builder.sectionId, 
             blocks: createBlocks(layout),
-            styles: {
-                gap: 12,
-                border: {
-                    width: 0,
-                    color: '#000000'
-                }
-            }
+            styles: sectionStyles
         }
         builder.sections.push(section)
         builder.selectedElement.section = section

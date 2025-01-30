@@ -62,7 +62,7 @@
                         <div class="space-y-4 p-4" v-show="configPanel.section.showColors">
                             <div class="gap-config flex gap-2 items-center justify-between">
                                 <label for="bg-color" class="block">Background Color: </label>
-                                <input type="color" v-model="builder.selectedElement.section.styles.bgColor" id="bg-color" class="h-10 p-px border rounded"/>
+                                <input type="color" v-model="builder.selectedElement.section.styles.backgroundColor" id="bg-color" class="h-10 p-px border rounded"/>
                             </div>
                         </div>
                     </div>
@@ -75,6 +75,16 @@
 
                         <div class="space-y-4 p-4" v-show="configPanel.section.showBoxModel">
                             <div class="mb-4 grid grid-cols-2 gap-2">
+                                <div class="space-y-2">
+                                    <label class="block">Width:</label>
+                                    <input type="text" v-model="builder.selectedElement.section.styles.width" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                </div>
+
+                                <div class="space-y-2">
+                                    <label class="block">height:</label>
+                                    <input type="text" v-model="builder.selectedElement.section.styles.height" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                </div>
+
                                 <div class="space-y-2">
                                     <label class="block">Padding:</label>
                                     <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>

@@ -31,7 +31,6 @@
 </template>
   
 <script setup>
-import { computed } from 'vue';
 import TextBlock from './TextBlock.vue'
 
 const props = defineProps({
@@ -48,11 +47,15 @@ const getComponent = (component) => {
 const sectionStyles = (section) => {
   return {
     gridTemplateColumns: `repeat(${section.columns}, 1fr)`,
-    backgroundColor: section.styles.bgColor,
+    backgroundColor: section.styles.backgroundColor,
     padding: section.styles.padding + 'px',
     margin: section.styles.margin + 'px',
     gap: section.styles.gap + 'px',
-    border: `${section.styles.border.width}px solid ${section.styles.border.color}`
+    borderWidth: `${section.styles.border.width}px`,
+    borderStyle: section.styles.border.style,
+    borderColor: section.styles.border.color,
+    width: section.styles.width,
+    height: section.styles.height
   }
 }
 
