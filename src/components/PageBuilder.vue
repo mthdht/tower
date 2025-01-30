@@ -1,5 +1,5 @@
 <template>
-    <div class="flex h-screen">
+    <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
         <Sidebar @add-section="addSection" @add-component="addComponent"/>
         

@@ -1,6 +1,6 @@
 <template>
      <!-- Panneau de configuration -->
-     <div v-if="configPanel.showPanels" class="w-80 bg-white shadow-md p-2">
+     <div v-if="configPanel.showPanels" class="w-96 bg-white shadow-md p-2 overflow-auto">
             <h2 class="text-lg font-bold mb-4">Configuration</h2>
             <div class="config-tabs grid grid-cols-3 gap-2 mb-8">
                 <button @click="configPanel.panel = 'section'">section</button>
@@ -78,7 +78,7 @@
                         </h3>
 
                         <div class="p-4" v-show="configPanel.section.showBoxModel">
-                            <div class="grid grid-cols-2 gap-x-2 gap-y-4">
+                            <div class="grid grid-cols-2 gap-x-2 gap-y-8">
                                 <div class="space-y-2">
                                     <label class="block">Width:</label>
                                     <div class="relative overflow-hidden">
@@ -114,13 +114,15 @@
                                     </div>
                                 </div>
 
-                                <div class="padding col-span-2">
+                                <div class="space-y-2 col-span-2">
                                     <div class="label flex justify-between">
                                         <label class="">Padding:</label>
                                         <div class="switch relative w-10 h-5 inline-block">
+                                            <span class="-ml-8">All: </span> 
                                             <input type="checkbox"
                                                 class="opacity-0 w-0 h-0 peer"
                                                 v-model="builder.selectedElement.section.styles.padding.linked">
+                                            
                                             <span class="slider round absolute cursor-pointer inset-0 bg-slate-300 transition-transform duration-500 rounded-full peer-checked:bg-sky-500"
                                                 @click="builder.selectedElement.section.styles.padding.linked = !builder.selectedElement.section.styles.padding.linked"></span>
                                         </div>
@@ -128,6 +130,28 @@
 
                                     <div class="space-y-2" v-show="builder.selectedElement.section.styles.padding.linked">
                                         <input type="text" v-model="builder.selectedElement.section.styles.padding.all" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="space-y-2">
+                                            <label class="block">Top:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.padding.top" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label class="block">Bottom:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.padding.bottom" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label class="block">Left:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.padding.left" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label class="block">Right:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.padding.right" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
                                     </div>
                                 </div>
 
