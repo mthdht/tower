@@ -77,8 +77,8 @@
                             <span class="">+</span>
                         </h3>
 
-                        <div class="space-y-4 p-4" v-show="configPanel.section.showBoxModel">
-                            <div class="mb-4 grid grid-cols-2 gap-2">
+                        <div class="p-4" v-show="configPanel.section.showBoxModel">
+                            <div class="grid grid-cols-2 gap-x-2 gap-y-4">
                                 <div class="space-y-2">
                                     <label class="block">Width:</label>
                                     <div class="relative overflow-hidden">
@@ -114,9 +114,21 @@
                                     </div>
                                 </div>
 
-                                <div class="space-y-2">
-                                    <label class="block">Padding:</label>
-                                    <input type="text" v-model="builder.selectedElement.section.styles.padding" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                <div class="padding col-span-2">
+                                    <div class="label flex justify-between">
+                                        <label class="">Padding:</label>
+                                        <div class="switch relative w-10 h-5 inline-block">
+                                            <input type="checkbox"
+                                                class="opacity-0 w-0 h-0 peer"
+                                                v-model="builder.selectedElement.section.styles.padding.linked">
+                                            <span class="slider round absolute cursor-pointer inset-0 bg-slate-300 transition-transform duration-500 rounded-full peer-checked:bg-sky-500"
+                                                @click="builder.selectedElement.section.styles.padding.linked = !builder.selectedElement.section.styles.padding.linked"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-2" v-show="builder.selectedElement.section.styles.padding.linked">
+                                        <input type="text" v-model="builder.selectedElement.section.styles.padding.all" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                    </div>
                                 </div>
 
                                 <div class="space-y-2">
@@ -178,8 +190,25 @@ const configPanel = reactive({
     section: {
         showLayout: true,
         showColors: false,
-        showBoxModel: false
+        showBoxModel: false,
     },
     
 })
 </script>
+
+<style>
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}</style>

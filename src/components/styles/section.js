@@ -6,7 +6,14 @@ export const sectionStyles = {
         color: '#000000',
         style: "solid"
     },
-    padding: 0,
+    padding: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+        all: '',
+        linked: true
+    },
     margin: 0,
     width: {
         value: 100,

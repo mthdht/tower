@@ -45,11 +45,13 @@ const getComponent = (component) => {
 }
 
 const sectionStyles = (section) => {
-  console.log(section.styles.width)
   return {
     gridTemplateColumns: `repeat(${section.columns}, 1fr)`,
     backgroundColor: section.styles.backgroundColor,
-    padding: section.styles.padding + 'px',
+    paddingTop: section.styles.padding.linked ? section.styles.padding.all + 'px' : section.styles.padding.top + 'px',
+    paddingBottom: section.styles.padding.linked ? section.styles.padding.all + 'px' : section.styles.padding.bottom + 'px',
+    paddingLeft: section.styles.padding.linked ? section.styles.padding.all + 'px' : section.styles.padding.left + 'px',
+    paddingRight: section.styles.padding.linked ? section.styles.padding.all + 'px' : section.styles.padding.right + 'px',
     margin: section.styles.margin + 'px',
     gap: section.styles.gap + 'px',
     borderWidth: `${section.styles.border.width}px`,
