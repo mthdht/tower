@@ -44,7 +44,11 @@
                                         @click="builder.selectedElement.section.styles.gap--" 
                                         :disabled="builder.selectedElement.section.styles.gap <= 0">-</button>
                                     
-                                    <div class="flex justify-center border p-2 size-10">{{  builder.selectedElement.section.styles.gap }}</div>
+                                    <input type="text" 
+                                        name="columns" 
+                                        id="section-columns" 
+                                        v-model="builder.selectedElement.section.styles.gap"
+                                        class="size-10 p-2 border">
                                     
                                     <button class="size-8 p-2 border flex justify-center items-center" 
                                         @click="builder.selectedElement.section.styles.gap++" >+</button>
