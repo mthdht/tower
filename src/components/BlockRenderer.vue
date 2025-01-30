@@ -8,7 +8,7 @@
         class="section border border-gray-300 rounded mb-4 grid"
         @click="$emit('selectSection', section)"
         :style="sectionStyles(section)"
-        :class="{'border-sky-500': section == props.builder.selectedElement.section}"
+        :class="{'ring ring-sky-500': section == props.builder.selectedElement.section}"
       >
         <div class="block border"
           :key="block.id"
@@ -45,6 +45,7 @@ const getComponent = (component) => {
 }
 
 const sectionStyles = (section) => {
+  console.log(section.styles.width)
   return {
     gridTemplateColumns: `repeat(${section.columns}, 1fr)`,
     backgroundColor: section.styles.backgroundColor,
@@ -54,8 +55,8 @@ const sectionStyles = (section) => {
     borderWidth: `${section.styles.border.width}px`,
     borderStyle: section.styles.border.style,
     borderColor: section.styles.border.color,
-    width: section.styles.width,
-    height: section.styles.height
+    width: section.styles.height.unit == 'auto' ? section.styles.width.unit : section.styles.width.value + section.styles.width.unit,
+    height: section.styles.height.unit == 'auto' ? section.styles.height.unit : section.styles.height.value + section.styles.height.unit
   }
 }
 

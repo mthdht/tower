@@ -15,7 +15,7 @@ export const useBuilder = () => {
             ...layout, 
             id: builder.sectionId, 
             blocks: createBlocks(layout),
-            styles: sectionStyles
+            styles: JSON.parse(JSON.stringify(sectionStyles))
         }
         builder.sections.push(section)
         builder.selectedElement.section = section

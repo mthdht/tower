@@ -13,8 +13,8 @@ export const sectionStyles = {
         unit: "%"
     },
     height: {
-        value: "auto",
-        unit: null
+        value: "",
+        unit: "auto"
     }
 
 }

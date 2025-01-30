@@ -4,7 +4,7 @@
         <Sidebar @add-section="addSection" @add-component="addComponent"/>
         
         <!-- Main Area -->
-        <div class="flex-1 bg-gray-50 p-6">
+        <div class="flex-1 bg-gray-50 p-6 overflow-auto">
             <BlockRenderer @selectSection="selectSection" @selectBlock="selectBlock" @selectComponent="selectComponent" :builder="builder"/>
             <pre>
                 {{  builder  }}

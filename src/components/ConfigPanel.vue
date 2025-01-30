@@ -81,12 +81,26 @@
                             <div class="mb-4 grid grid-cols-2 gap-2">
                                 <div class="space-y-2">
                                     <label class="block">Width:</label>
-                                    <input type="text" v-model="builder.selectedElement.section.styles.width" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                    <div class="relative">
+                                        <input type="text" v-model="builder.selectedElement.section.styles.width.value" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                        <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center" v-model="builder.selectedElement.section.styles.width.unit">
+                                            <option :value="unit" 
+                                                v-for="unit in configPanel.units" 
+                                                class="flex justify-center">{{unit}}</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="space-y-2">
                                     <label class="block">height:</label>
-                                    <input type="text" v-model="builder.selectedElement.section.styles.height" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                    <div class="relative">
+                                        <input type="text" v-model="builder.selectedElement.section.styles.height.value" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                        <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center" v-model="builder.selectedElement.section.styles.height.unit">
+                                            <option :value="unit" 
+                                                v-for="unit in configPanel.units" 
+                                                class="flex justify-center">{{unit}}</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="space-y-2">
@@ -149,10 +163,12 @@ const { builder, removeBlock, addBlock } = useBuilder()
 const configPanel = reactive({
     showPanels: true,
     panel: 'section',
+    units: ['px', '%', 'auto','em', 'rem', 'ch', 'vw', 'vh', 'cm', 'mm', 'in', 'pt', 'pc', 'vmin', 'vmax'],
     section: {
         showLayout: true,
         showColors: false,
         showBoxModel: false
-    }
+    },
+    
 })
 </script>
