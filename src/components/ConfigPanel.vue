@@ -24,7 +24,7 @@
                         
                         <div class="space-y-4 p-4" v-show="configPanel.section.showLayout">
                             <div class="columns-config flex gap-2 items-center justify-between">
-                                <label>Columns: </label>
+                                <label class="font-semibold">Columns: </label>
 
                                 <div class="flex justify-center gap-4 items-center">
                                     <button class="size-8 p-2 border flex justify-center items-center" 
@@ -38,7 +38,7 @@
                             </div>
 
                             <div class="gap-config flex gap-2 items-center justify-between">
-                                <label>Gap: </label>
+                                <label class="font-semibold">Gap: </label>
                                 <div class="flex justify-center gap-4 items-center">
                                     <button class="size-8 p-2 border flex justify-center items-center" 
                                         @click="builder.selectedElement.section.styles.gap--" 
@@ -80,12 +80,12 @@
                         <div class="p-4" v-show="configPanel.section.showBoxModel">
                             <div class="grid grid-cols-2 gap-x-2 gap-y-8">
                                 <div class="space-y-2">
-                                    <label class="block">Width:</label>
-                                    <div class="relative overflow-hidden">
+                                    <label class="block font-semibold">Width:</label>
+                                    <div class="relative overflow-hidden rounded">
                                         <input type="text" 
                                             v-model="builder.selectedElement.section.styles.width.value" 
                                             id="width" 
-                                            class="w-full p-2 border rounded disabled:bg-slate-200 disabled:text-slate-300" 
+                                            class="w-full p-2 border disabled:bg-slate-200 disabled:text-slate-300" 
                                             placeholder="e.g. 20"
                                             :disabled="builder.selectedElement.section.styles.width.unit == 'auto'"/>
 
@@ -98,12 +98,12 @@
                                 </div>
 
                                 <div class="space-y-2">
-                                    <label class="block">height:</label>
-                                    <div class="relative overflow-hidden">
+                                    <label class="block font-semibold">height:</label>
+                                    <div class="relative overflow-hidden rounded">
                                         <input type="text" 
                                             v-model="builder.selectedElement.section.styles.height.value" 
                                             id="padding" 
-                                            class="w-full p-2 border rounded disabled:bg-slate-200 disabled:text-slate-300" 
+                                            class="w-full p-2 border disabled:bg-slate-200 disabled:text-slate-300" 
                                             placeholder="e.g. 20"
                                             :disabled="builder.selectedElement.section.styles.height.unit == 'auto'"/>
                                         <select class="absolute right-0 top-0 h-full bg-slate-300 w-15 justify-center focus-visible:outline-0" v-model="builder.selectedElement.section.styles.height.unit">
@@ -116,7 +116,7 @@
 
                                 <div class="space-y-2 col-span-2">
                                     <div class="label flex justify-between">
-                                        <label class="">Padding:</label>
+                                        <label class="font-semibold">Padding:</label>
                                         <div class="switch relative w-10 h-5 inline-block">
                                             <span class="-ml-8">All: </span> 
                                             <input type="checkbox"
@@ -132,7 +132,7 @@
                                         <input type="text" v-model="builder.selectedElement.section.styles.padding.all" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
                                     </div>
 
-                                    <div class="grid grid-cols-2 gap-2">
+                                    <div class="grid grid-cols-2 gap-2" v-show="!builder.selectedElement.section.styles.padding.linked">
                                         <div class="space-y-2">
                                             <label class="block">Top:</label>
                                             <input type="text" v-model="builder.selectedElement.section.styles.padding.top" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
@@ -156,17 +156,17 @@
                                 </div>
 
                                 <div class="space-y-2">
-                                    <label class="block">Margin:</label>
+                                    <label class="font-semibold">Margin:</label>
                                     <input type="text" v-model="builder.selectedElement.section.styles.margin" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
                                 </div>
 
                                 <div class="space-y-2">
-                                    <label class="block">border width:</label>
+                                    <label class="font-semibold">border width:</label>
                                     <input type="text" v-model="builder.selectedElement.section.styles.border.width" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
                                 </div>
 
                                 <div class="space-y-2">
-                                    <label class="block">border color:</label>
+                                    <label class="block font-semibold">border color:</label>
                                     <input type="color" v-model="builder.selectedElement.section.styles.border.color" class="h-10 w-full border rounded"/>
                                 </div>
 
