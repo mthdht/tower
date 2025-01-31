@@ -196,9 +196,45 @@
                                     </div>
                                 </div>
 
-                                <div class="space-y-2">
-                                    <label class="font-semibold">border width:</label>
-                                    <input type="text" v-model="builder.selectedElement.section.styles.border.width" id="padding" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                <div class="space-y-2 col-span-2 border-config">
+                                    <div class="label flex justify-between">
+                                        <label class="font-semibold">Border:</label>
+                                        <div class="switch relative w-10 h-5 inline-block">
+                                            <span class="-ml-8">All: </span> 
+                                            <input type="checkbox"
+                                                class="opacity-0 w-0 h-0 peer"
+                                                v-model="builder.selectedElement.section.styles.border.linked">
+                                            
+                                            <span class="slider round absolute cursor-pointer inset-0 bg-slate-300 transition-transform duration-500 rounded-full peer-checked:bg-sky-500"
+                                                @click="builder.selectedElement.section.styles.border.linked = !builder.selectedElement.section.styles.border.linked"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-2" v-show="builder.selectedElement.section.styles.border.linked">
+                                        <input type="text" v-model="builder.selectedElement.section.styles.border.all" id="margin" class="w-full p-2 border rounded" placeholder="e.g. 20"/>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-2" v-show="!builder.selectedElement.section.styles.border.linked">
+                                        <div class="space-y-2">
+                                            <label class="block">Top:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.border.top" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label class="block">Bottom:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.border.bottom" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label class="block">Left:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.border.left" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+
+                                        <div class="space-y-2">
+                                            <label class="block">Right:</label>
+                                            <input type="text" v-model="builder.selectedElement.section.styles.border.right" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="space-y-2">

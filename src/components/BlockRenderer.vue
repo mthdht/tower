@@ -60,7 +60,11 @@ const sectionStyles = (section) => {
     borderWidth: `${section.styles.border.width}px`,
     borderStyle: section.styles.border.style,
     borderColor: section.styles.border.color,
-    width: section.styles.height.unit == 'auto' ? section.styles.width.unit : section.styles.width.value + section.styles.width.unit,
+    borderTopWidth: section.styles.border.linked ? section.styles.border.all + 'px' : section.styles.border.top + 'px',
+    borderBottomWidth: section.styles.border.linked ? section.styles.border.all + 'px' : section.styles.border.bottom + 'px',
+    borderLeftWidth: section.styles.border.linked ? section.styles.border.all + 'px' : section.styles.border.left + 'px',
+    borderRightWidth: section.styles.border.linked ? section.styles.border.all + 'px' : section.styles.border.right + 'px',
+    width: section.styles.width.unit == 'auto' ? section.styles.width.unit : section.styles.width.value + section.styles.width.unit,
     height: section.styles.height.unit == 'auto' ? section.styles.height.unit : section.styles.height.value + section.styles.height.unit
   }
 }

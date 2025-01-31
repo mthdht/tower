@@ -4,7 +4,13 @@ export const sectionStyles = {
     border: {
         width: 0,
         color: '#000000',
-        style: "solid"
+        style: "solid",
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+        all: '',
+        linked: true
     },
     padding: {
         top: '',
@@ -24,7 +30,7 @@ export const sectionStyles = {
     },
     width: {
         value: 100,
-        unit: "%"
+        unit: "auto"
     },
     height: {
         value: "100",
