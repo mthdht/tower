@@ -14,7 +14,14 @@ export const sectionStyles = {
         all: '',
         linked: true
     },
-    margin: 0,
+    margin: {
+        top: '',
+        bottom: '',
+        left: '',
+        right: '',
+        all: '',
+        linked: true
+    },
     width: {
         value: 100,
         unit: "%"
