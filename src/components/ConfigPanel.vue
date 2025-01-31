@@ -235,13 +235,23 @@
                                             <input type="text" v-model="builder.selectedElement.section.styles.border.right" id="margin" class="w-full p-2 border rounded" placeholder="e.g."/>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="space-y-2">
-                                    <label class="block font-semibold">border color:</label>
-                                    <input type="color" v-model="builder.selectedElement.section.styles.border.color" class="h-10 w-full border rounded"/>
-                                </div>
+                                    <div class="grid grid-cols-2 gap-2">
+                                        <div class="space-y-2">
+                                            <label class="block">Color:</label>
+                                            <input type="color" v-model="builder.selectedElement.section.styles.border.color" class="h-10 w-full border rounded"/>
+                                        </div>
 
+                                        <div class="space-y-2">
+                                            <label class="block">Style:</label>
+                                            <select class="focus-visible:outline-0 border w-full h-10 rounded" v-model="builder.selectedElement.section.styles.border.style">
+                                                    <option :value="style" 
+                                                        v-for="style in configPanel.borderStyles" 
+                                                        class="flex justify-center">{{ style }}</option>
+                                                </select>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -283,6 +293,7 @@ const configPanel = reactive({
     showPanels: true,
     panel: 'section',
     units: ['px', '%', 'auto','em', 'rem', 'ch', 'vw', 'vh', 'cm', 'mm', 'in', 'pt', 'pc', 'vmin', 'vmax'],
+    borderStyles: ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset", "hidden", "none"],
     section: {
         showLayout: true,
         showColors: false,
