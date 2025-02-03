@@ -6,9 +6,6 @@
         <!-- Main Area -->
         <div class="flex-1 bg-gray-50 p-6 overflow-auto">
             <BlockRenderer @selectSection="selectSection" @selectBlock="selectBlock" @selectComponent="selectComponent" :builder="builder"/>
-            <pre>
-                {{  builder  }}
-            </pre>
         </div>
 
        <ConfigPanel></ConfigPanel>

@@ -1,5 +1,13 @@
 export const sectionStyles = {
+    container: true,
     backgroundColor: "#ffffff",
+    backgroundImage: {
+        url: "",
+        repeat: "no-repeat",
+        position: "center",
+        size: "cover",
+        attachment: "scroll",
+    },
     gap: 12,
     border: {
         width: 0,

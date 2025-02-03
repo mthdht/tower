@@ -5,17 +5,20 @@
       <div
         v-for="(section) in props.builder.sections"
         :key="section.id"
-        class="section border border-gray-300 rounded mb-4 grid"
+        class="section border border-gray-300 rounded mb-4 grid hover:ring-1 hover:ring-emerald-500"
         @click="$emit('selectSection', section)"
         :style="sectionStyles(section)"
-        :class="{'ring ring-sky-500': section == props.builder.selectedElement.section}"
+        :class="{
+          'ring ring-sky-500': section == props.builder.selectedElement.section,
+          ' mx-auto': section.styles.container
+        }"
       >
         <div class="block border"
           :key="block.id"
           :class="{'border-emerald-500': block == props.builder.selectedElement.block}"
           v-for="(block) in section.blocks"
           @click="$emit('selectBlock', block)">
-          <p v-show="!block.components.length">
+          <p v-show="!block.components.length" class="text-center">
             block : {{ block.id }}
           </p>
 
